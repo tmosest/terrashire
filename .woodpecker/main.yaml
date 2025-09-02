@@ -6,7 +6,6 @@ when:
 steps:
   build:
     image: python:3.9-slim # Or any other Python image
-    privileged: true
     commands:
       # Build the Docker image for the Flask application
       - whoami
