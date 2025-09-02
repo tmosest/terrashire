@@ -1,0 +1,16 @@
+# .woodpecker.yml
+when:
+  event: [push, manual]
+  branch: main
+
+steps:
+  build:
+    image: python:3.9-slim # Or any other Python image
+    privileged: true
+    commands:
+      # Build the Docker image for the Flask application
+      - whoami
+      - source ~/.venv/bin/activate
+      - pip3 install -r requirements.txt
+      - pipx install . --verbose --force
+      - terrashire help
