@@ -1,4 +1,5 @@
 import os
+import pprint
 import time
 import typer
 from typing_extensions import Annotated
@@ -6,8 +7,9 @@ from typing_extensions import Annotated
 
 # from .config import Config
 # from .event import SyncEventHandler
-from .help import help
 from .cmd_util import copy, run
+from .help import help
+from .network import scan_network
 
 class Terrashire():
 
@@ -43,6 +45,9 @@ class Terrashire():
             copy(package_path, repo_path)
         except Exception as e:
             print(f"Error executing command: {e}")
+
+    def list_network(self, target_ip_range="192.168.1.1/24"):
+        pprint.pprint(scan_network(target_ip_range))
 
     def run(self):
         print("TODO running some stuff")
