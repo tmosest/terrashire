@@ -1,9 +1,11 @@
 import abc
 import os
+import typer
 
 from .cmd_util import copy
 
 class Mod(abc.ABC):
+
     def init_mod(self):
         absolute_path = os.getcwd()
         repo_path = os.path.join(absolute_path, self.get_mod())
@@ -14,6 +16,35 @@ class Mod(abc.ABC):
             copy(package_path, repo_path)
         except Exception as e:
             print(f"Error executing command: {e}")
+
+        self.init_mod_secrets_prompts()
+
+    def init_mod_secrets_prompts(self):
+        absolute_path = os.getcwd()
+        repo_path = os.path.join(absolute_path, self.get_mod())
+        terraform_vars_path = os.path.join(repo_path, 'terraform.tfvars')
+
+        # Skip mods without tfvars files for now.
+        # TODO set env variables for docker and other stuff.
+        if os.path.exists(terraform_vars_path) == False:
+            return
+
+        contents = []
+
+        with open(terraform_vars_path, "r") as file:
+            contents = file.readlines()
+
+        results = []
+
+        for content in contents:
+            question = content.split("=")[0].strip()
+            ans = typer.prompt(question)
+            results.append(f"{question} = \"{ans}\"")
+
+        with open(terraform_vars_path, "w") as file:
+            for item in results:
+                file.write(str(item) + "\n")
+
     
     @abc.abstractmethod
     def init(self):

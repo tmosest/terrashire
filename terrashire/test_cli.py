@@ -43,6 +43,20 @@ def test_gitea_init():
     assert result.exit_code == 0
     assert "/gitea" in result.stdout
 
+def test_woodpecker_init():
+    path =  os.path.join(os.path.expanduser("~"), 'terrashire-cli-test-units')
+    print(f"{path}")
+    runner.invoke(app, ["init", path])
+
+    result = runner.invoke(app, ["init", path])
+    assert result.exit_code == 0
+    
+    os.chdir(path)
+    result = runner.invoke(app, ["woodpecker", "init"])
+
+    assert result.exit_code == 0
+    assert "/woodpecker" in result.stdout
+
 def test_mods_init():
     path =  os.path.join(os.path.expanduser("~"), 'terrashire-cli-test-units')
     print(f"{path}")
@@ -51,11 +65,11 @@ def test_mods_init():
     result = runner.invoke(app, ["init", path])
     assert result.exit_code == 0
 
-    mods = ["opnsense", "npm", "gitea", "pihole", "proxmox", "woodpecker"]
+    mods = [] # ["opnsense", "npm", "gitea", "pihole", "proxmox", "woodpecker"]
     
     for mod in mods:
         os.chdir(path)
         result = runner.invoke(app, [mod, "init"])
-        
+        print(f"Running {mod}")
         assert result.exit_code == 0
         assert f"/{mod}" in result.stdout

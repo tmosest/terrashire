@@ -226,6 +226,9 @@ They will need to be added as environmental variables in any build tools.
 - [Local Woodpecker Config Explained](https://wilw.dev/notes/woodpecker)
 - [Cool Guy](https://jan.wildeboer.net/2024/12/Woodpecker-Shenanigans/)
 - [NGINX Proxy Setup](https://anthonyconstant.co.uk/blog/f/local-ssl-certificate-using-nginx-proxy-manager-dockerportainer)
+- [What Is PXE Boot and How Does It Work?](https://heimdalsecurity.com/blog/what-is-pxe-boot/)
+- [Set up a Kubernetes cluster in under 5 minutes with Proxmox and k3s](https://dev.to/mihailtd/set-up-a-kubernetes-cluster-in-under-5-minutes-with-proxmox-and-k3s-2987)
+- [khanh-ph/proxmox-kubernetes](https://github.com/khanh-ph/proxmox-kubernetes)
 
 ## Useful Homelab Tools
 
