@@ -1,0 +1,9 @@
+*.egg-info
+build/
+*.tfstate
+*.tfstate.backup
+plan
+.terraform
+.terraform.lock.hcl
+*.log
+.DS_Store

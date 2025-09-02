@@ -1,0 +1,3 @@
+    # Example MANIFEST.in
+    include README.md
+    recursive-include terrashire .gitignore
