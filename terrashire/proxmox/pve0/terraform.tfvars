@@ -1,0 +1,7 @@
+ssh_key = ""
+token_secret = ""
+token_id = ""
+url = ""
+app_name = ""
+clone = ""
+proxmox_host = "pv0"

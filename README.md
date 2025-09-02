@@ -2,6 +2,8 @@
 
 Terrashire CLI is a convient and easy way to manage your network as infrastructure using the command line.
 
+![The Shire](imgs/the_shire.webp)
+
 Generates Terraform Code Repos that manage network state.
 
 The tool generates a repo with [terraform code](https://developer.hashicorp.com/terraform) patterns and then makes it easy to edit those configurations.

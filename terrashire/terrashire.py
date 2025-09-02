@@ -52,6 +52,7 @@ class Terrashire():
         if cmd == "init":
             self.init_mod(mod)
 
+    # MODs
     def opnsense_cmd_callback(value: str):
         if value != "init": # or value != "add":
             raise typer.BadParameter("Can only init at the moment")
@@ -61,6 +62,15 @@ class Terrashire():
         mod = 'opnsense'
         self.run_mod(cmd=cmd, mod=mod)
 
+    def pihold_cmd_callback(value: str):
+        if value != "init": # or value != "add":
+            raise typer.BadParameter("Can only init at the moment")
+        return value
+    
+    def pihole(self, cmd: Annotated[str, typer.Argument(help="init", callback=pihold_cmd_callback)] = None):
+        mod = 'pihole'
+        self.run_mod(cmd=cmd, mod=mod)
+
     def npm_cmd_callback(value: str):
         if value != "init": # or value != "add":
             raise typer.BadParameter("Can only init at the moment")
@@ -68,4 +78,13 @@ class Terrashire():
 
     def npm(self, cmd: Annotated[str, typer.Argument(help="init", callback=npm_cmd_callback)] = None):
         mod = 'npm'
+        self.run_mod(cmd=cmd, mod=mod)
+
+    def proxmox_cmd_callback(value: str):
+        if value != "init": # or value != "add":
+            raise typer.BadParameter("Can only init at the moment")
+        return value
+    
+    def proxmox(self, cmd: Annotated[str, typer.Argument(help="init", callback=proxmox_cmd_callback)] = None):
+        mod = 'proxmox'
         self.run_mod(cmd=cmd, mod=mod)
