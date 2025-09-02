@@ -8,8 +8,15 @@ from typing_extensions import Annotated
 # from .config import Config
 # from .event import SyncEventHandler
 from .cmd_util import copy, run
+from .gitea import gitea_cmd_callback, GiteaMod
 from .help import help
+from .mod import Mod
 from .network import scan_network
+from .npm import npm_cmd_callback, NpmMod
+from .opnsense import opnsense_cmd_callback, OpnSenseMod
+from .pihole import pihold_cmd_callback, PiHoleMod
+from .proxmox import proxmox_cmd_callback, ProxmoxMod
+from .woodpecker import woodpecker_cmd_callback, WoodpeckerMod
 
 class Terrashire():
 
@@ -35,79 +42,38 @@ class Terrashire():
         copy(init_path, absolute_path)
         run("git init .")
 
-    def init_mod(self, mod: str):
-        absolute_path = os.getcwd()
-        repo_path = os.path.join(absolute_path, mod)
-        package_path = os.path.join(os.path.dirname(__file__), mod)
-        print(f"Copying files from {package_path} to {repo_path}")
-            
-        try: 
-            copy(package_path, repo_path)
-        except Exception as e:
-            print(f"Error executing command: {e}")
-
     def list_network(self, target_ip_range="192.168.1.1/24"):
         pprint.pprint(scan_network(target_ip_range))
 
     def run(self):
         print("TODO running some stuff")
 
-    def run_mod(self, cmd, mod):
+    def run_mod(self, cmd, mod : Mod):
         print(f"Running {mod} {cmd}")
         if cmd == "init":
-            self.init_mod(mod)
+            mod.init()
 
     # MODs
-    def gitea_cmd_callback(value: str):
-        if value != "init": # or value != "add":
-            raise typer.BadParameter("Can only init at the moment")
-        return value
-    
     def gitea(self, cmd: Annotated[str, typer.Argument(help="init", callback=gitea_cmd_callback)] = None):
-        mod = 'gitea'
+        mod = GiteaMod()
         self.run_mod(cmd=cmd, mod=mod)
-
-    def opnsense_cmd_callback(value: str):
-        if value != "init": # or value != "add":
-            raise typer.BadParameter("Can only init at the moment")
-        return value
     
     def opnsense(self, cmd: Annotated[str, typer.Argument(help="init", callback=opnsense_cmd_callback)] = None):
-        mod = 'opnsense'
+        mod = OpnSenseMod()
         self.run_mod(cmd=cmd, mod=mod)
-
-    def pihold_cmd_callback(value: str):
-        if value != "init": # or value != "add":
-            raise typer.BadParameter("Can only init at the moment")
-        return value
     
     def pihole(self, cmd: Annotated[str, typer.Argument(help="init", callback=pihold_cmd_callback)] = None):
-        mod = 'pihole'
+        mod = PiHoleMod()
         self.run_mod(cmd=cmd, mod=mod)
-
-    def npm_cmd_callback(value: str):
-        if value != "init": # or value != "add":
-            raise typer.BadParameter("Can only init at the moment")
-        return value
 
     def npm(self, cmd: Annotated[str, typer.Argument(help="init", callback=npm_cmd_callback)] = None):
-        mod = 'npm'
+        mod = NpmMod()
         self.run_mod(cmd=cmd, mod=mod)
-
-    def proxmox_cmd_callback(value: str):
-        if value != "init": # or value != "add":
-            raise typer.BadParameter("Can only init at the moment")
-        return value
     
     def proxmox(self, cmd: Annotated[str, typer.Argument(help="init", callback=proxmox_cmd_callback)] = None):
-        mod = 'proxmox'
+        mod = ProxmoxMod()
         self.run_mod(cmd=cmd, mod=mod)
-
-    def woodpecker_cmd_callback(value: str):
-        if value != "init": # or value != "add":
-            raise typer.BadParameter("Can only init at the moment")
-        return value
     
     def woodpecker(self, cmd: Annotated[str, typer.Argument(help="init", callback=woodpecker_cmd_callback)] = None):
-        mod = 'woodpecker'
+        mod = WoodpeckerMod()
         self.run_mod(cmd=cmd, mod=mod)
