@@ -239,6 +239,11 @@ They will need to be added as environmental variables in any build tools.
 - [Borg Backup](https://github.com/borgbackup/borg#what-is-borgbackup)
 - [PiHole](https://pi-hole.net/)
 - [Wordpress Docker Compose](https://github.com/nezhar/wordpress-docker-compose)
+- [Kubernetes on Proxmox: A Practical Guide for DevOps](https://www.plural.sh/blog/kubernetes-on-proxmox-guide/)
+- [https://kustomize.io/](https://kustomize.io/)
+- [https://helm.sh/](https://helm.sh/)
+- [Deploy Docker/Compose using Woodpecker CI](https://hinty.io/vverenko/deploy-docker-compose-using-woodpecker-ci/)
+- [Ghost on Docker with Traefik](https://faun.pub/ghost-on-docker-with-traefik-50358b59dfd3)
 
 ## Useful Homelab Tools
 
