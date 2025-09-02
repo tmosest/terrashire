@@ -4,3 +4,7 @@ recursive-include terrashire README.md
 recursive-include terrashire .gitignore
 recursive-include terrashire *.tf
 recursive-include terrashire *.tfvars
+recursive-include terrashire *.yaml
+recursive-include terrashire *.conf
+recursive-include terrashire Dockerfile
+recursive-include terrashire .env

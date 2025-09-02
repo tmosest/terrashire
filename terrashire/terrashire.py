@@ -58,6 +58,15 @@ class Terrashire():
             self.init_mod(mod)
 
     # MODs
+    def gitea_cmd_callback(value: str):
+        if value != "init": # or value != "add":
+            raise typer.BadParameter("Can only init at the moment")
+        return value
+    
+    def gitea(self, cmd: Annotated[str, typer.Argument(help="init", callback=gitea_cmd_callback)] = None):
+        mod = 'gitea'
+        self.run_mod(cmd=cmd, mod=mod)
+
     def opnsense_cmd_callback(value: str):
         if value != "init": # or value != "add":
             raise typer.BadParameter("Can only init at the moment")
@@ -92,4 +101,13 @@ class Terrashire():
     
     def proxmox(self, cmd: Annotated[str, typer.Argument(help="init", callback=proxmox_cmd_callback)] = None):
         mod = 'proxmox'
+        self.run_mod(cmd=cmd, mod=mod)
+
+    def woodpecker_cmd_callback(value: str):
+        if value != "init": # or value != "add":
+            raise typer.BadParameter("Can only init at the moment")
+        return value
+    
+    def woodpecker(self, cmd: Annotated[str, typer.Argument(help="init", callback=woodpecker_cmd_callback)] = None):
+        mod = 'woodpecker'
         self.run_mod(cmd=cmd, mod=mod)
