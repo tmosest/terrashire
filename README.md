@@ -229,6 +229,16 @@ They will need to be added as environmental variables in any build tools.
 - [What Is PXE Boot and How Does It Work?](https://heimdalsecurity.com/blog/what-is-pxe-boot/)
 - [Set up a Kubernetes cluster in under 5 minutes with Proxmox and k3s](https://dev.to/mihailtd/set-up-a-kubernetes-cluster-in-under-5-minutes-with-proxmox-and-k3s-2987)
 - [khanh-ph/proxmox-kubernetes](https://github.com/khanh-ph/proxmox-kubernetes)
+- [Ghost Kub](https://github.com/sredevopsorg/ghost-on-kubernetes)
+- [terraform-provider-matchbox](https://github.com/poseidon/terraform-provider-matchbox)
+- [Dynamic DNS Using AWS Route 53](https://avishayil.medium.com/dynamic-dns-using-aws-route-53-60a2331a58a4)
+- [Setting Up the AWS CLI & IAM User API Keys](https://medium.com/@terminalsandcoffee/setting-up-the-aws-cli-iam-user-api-keys-b83554e314e4)
+- [Set up nginx-proxy-manager with LetsEncrypt SSL certificates](https://unixorn.github.io/post/hass/2023-07-09-set-up-nginx-proxy-manager/)
+- [ARGO CD](https://argoproj.github.io/cd/)
+- [Next Cloud Drive](https://github.com/nextcloud/all-in-one#nextcloud-all-in-one)
+- [Borg Backup](https://github.com/borgbackup/borg#what-is-borgbackup)
+- [PiHole](https://pi-hole.net/)
+- [Wordpress Docker Compose](https://github.com/nezhar/wordpress-docker-compose)
 
 ## Useful Homelab Tools
 
@@ -245,6 +255,13 @@ They will need to be added as environmental variables in any build tools.
 - [khuedoan : Great setup and easy config on a cluster](https://github.com/khuedoan/homelab)
 - [Local Docker Registry: I like her site I should copy this basically](https://www.allisonthackston.com/articles/local-docker-registry.html)
 
+## Useful Hardware
+
+- [OPNSense Router 4 Ports](https://a.co/d/13mnVcU)
+- [NAS 2 Bay](https://a.co/d/fwVYIlW)
+- [Mini Server $150](https://a.co/d/gJYIDzQ)
+- [Mini PC or OPNSense](https://a.co/d/98bnOv4)
+- [8 Port Switch](https://a.co/d/1AAodm2)
 
 Note: This repo is combination of Terra for Earth / Home / Terraform and The Shire, the home of the hobbits, from Lord of The Rings. 
 

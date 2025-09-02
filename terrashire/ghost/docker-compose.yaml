@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  ghost:
+    image: ghost:latest
+    ports:
+      - "80:2368"  # Map host port 80 to container port 2368 (Ghost's default)
+    environment:
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: ghost
+      database__connection__password: your_mysql_password
+      database__connection__database: ghost_db
+      url: http://localhost  # Replace with your domain if deploying to a server
+    volumes:
+      - ghost_content:/var/lib/ghost/content
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+      MYSQL_DATABASE: ghost_db
+      MYSQL_USER: ghost
+      MYSQL_PASSWORD: your_mysql_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  ghost_content:
+  mysql_data:
