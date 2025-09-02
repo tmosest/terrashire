@@ -1,5 +1,6 @@
 import os
 import time
+import shutil
 import subprocess
 import typer
 from typing_extensions import Annotated
@@ -65,17 +66,47 @@ class Terrashire():
         init_path = os.path.join(os.path.dirname(__file__), 'init')
         print(f"Copying files from {init_path}")
         try: 
-            cp_init = subprocess.run(["cp", f"{init_path}/.gitignore", f"{absolute_path}/"], capture_output=True, text=True, check=False)
-            print(cp_init.stdout)
-        except subprocess.CalledProcessError as e:
+            shutil.copytree(init_path, absolute_path)
+        except Exception as e:
             print(f"Error executing command: {e}")
-            print(f"Stderr: {e.stderr}")
 
     def run(self):
         print("TODO running some stuff")
 
-    def opnsense(self, cmd: Annotated[str, typer.Argument(help="What command the service is doing")] = None):
-        print("TODO running some opnsense stuff")
+    def opnsense_cmd_callback(value: str):
+        if value != "init": # or value != "add":
+            raise typer.BadParameter("Can only init at the moment")
+        return value
+    
+    def opnsense(self, cmd: Annotated[str, typer.Argument(help="init", callback=opnsense_cmd_callback)] = None):
+        print(f"Running opnsense {cmd}")
+        
+        if cmd == "init":
+            absolute_path = os.getcwd()
+            repo_opnsense_path = os.path.join(absolute_path, 'opnsense')
+            package_opnsense_path = os.path.join(os.path.dirname(__file__), 'opnsense')
+            print(f"Copying files from {package_opnsense_path} to {repo_opnsense_path}")
+            
+            try: 
+                shutil.copytree(package_opnsense_path, repo_opnsense_path)
+            except Exception as e:
+                print(f"Error executing command: {e}")
 
-    def npm(self, cmd: Annotated[str, typer.Argument(help="What command the service is doing")] = None):
-        print("TODO running some nginx proxy manager stuff stuff")
+    def npm_cmd_callback(value: str):
+        if value != "init": # or value != "add":
+            raise typer.BadParameter("Can only init at the moment")
+        return value
+
+    def npm(self, cmd: Annotated[str, typer.Argument(help="init", callback=npm_cmd_callback)] = None):
+        print(f"Running nginx proxy manager {cmd}")
+
+        if cmd == "init":
+            absolute_path = os.getcwd()
+            repo_path = os.path.join(absolute_path, 'npm')
+            package_path = os.path.join(os.path.dirname(__file__), 'npm')
+            print(f"Copying files from {package_path} to {repo_path}")
+            
+            try: 
+                shutil.copytree(package_path, repo_path)
+            except Exception as e:
+                print(f"Error executing command: {e}")

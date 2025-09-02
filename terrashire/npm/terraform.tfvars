@@ -1,0 +1,7 @@
+npm_url = ""
+npm_username = ""
+npm_password = ""
+npm_domain_name = ""
+npm_letsencrypt_email = ""
+npm_letsencrypt_secret = ""
+npm_nginx_ip = ""

@@ -7,3 +7,4 @@ plan
 .terraform.lock.hcl
 *.log
 .DS_Store
+*.tfvars
