@@ -2,6 +2,7 @@ def help():
         """
         Prints a help messsage
         """
+        print("Welcome to Terrashire")
         print("This program helps to generate and maintain a homelab")
         print("")
         print("")

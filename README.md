@@ -24,6 +24,13 @@ pipx install . --verbose --force
 terrashire help
 ```
 
+#### Unit Tests
+
+```
+source ~/.venv/bin/activate
+pytest
+```
+
 There should now be a new `terrashire` command.
 
 ### Commands
