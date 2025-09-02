@@ -10,4 +10,5 @@ steps:
       # Build the Docker image for the Flask application
       - whoami
       - pip3 install -r requirements.txt
+      - pip3 install pytest
       - pytest
