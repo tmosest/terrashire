@@ -9,7 +9,6 @@ steps:
     commands:
       # Build the Docker image for the Flask application
       - whoami
-      - source ~/.venv/bin/activate
       - pip3 install -r requirements.txt
       - pipx install . --verbose --force
       - terrashire help
