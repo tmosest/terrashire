@@ -1,7 +1,7 @@
 # Blank vars for use by terraform.tfvars
 variable "opnsense_url" {
 }
-variable "opnsense_key" {
+variable "opnsense_user" {
 }
-variable "opnsense_secret" {
+variable "opnsense_password" {
 }

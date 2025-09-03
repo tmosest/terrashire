@@ -1,3 +1,3 @@
-onpsense_url = ""
-opnsense_key = ""
-opnsense_secret = ""
+opnsense_url = ""
+opnsense_user = ""
+opnsense_password = ""
