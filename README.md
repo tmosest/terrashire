@@ -244,6 +244,8 @@ They will need to be added as environmental variables in any build tools.
 - [https://helm.sh/](https://helm.sh/)
 - [Deploy Docker/Compose using Woodpecker CI](https://hinty.io/vverenko/deploy-docker-compose-using-woodpecker-ci/)
 - [Ghost on Docker with Traefik](https://faun.pub/ghost-on-docker-with-traefik-50358b59dfd3)
+- [Astro Blog](https://docs.astro.build/en/getting-started/)
+- [Comparing SSGs (Static Site Generators) for my Blog](https://medium.com/@davidmles/comparing-ssgs-static-site-generators-for-my-blog-a6724a719150)
 
 ## Useful Homelab Tools
 
