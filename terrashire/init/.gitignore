@@ -9,3 +9,5 @@ plan
 .DS_Store
 *.tfvars
 .env
+.Config
+.Config.json

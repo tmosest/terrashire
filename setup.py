@@ -7,6 +7,6 @@ setup(
    author='Moses',
    author_email='',
    packages=find_packages(),  #same as name
-   install_requires=['paramiko', 'typer', 'watchdog'], #external packages as dependencies
+   install_requires=['paprika', 'paramiko', 'typer', 'watchdog'], #external packages as dependencies
    include_package_data=True, # This is crucial
 )

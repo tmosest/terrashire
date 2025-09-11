@@ -2,6 +2,7 @@
 include README.md
 recursive-include terrashire README.md
 recursive-include terrashire .gitignore
+recursive-include terrashire *.json
 recursive-include terrashire *.tf
 recursive-include terrashire *.tfvars
 recursive-include terrashire *.yaml

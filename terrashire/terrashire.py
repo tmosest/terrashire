@@ -11,7 +11,7 @@ from .cmd_util import copy, run
 from .gitea import gitea_cmd_callback, GiteaMod
 from .help import help
 from .mod import Mod
-from .network import scan_network
+from .network import detect_new_devices, scan_network
 from .npm import npm_cmd_callback, NpmMod
 from .opnsense import opnsense_cmd_callback, OpnSenseMod
 from .pihole import pihold_cmd_callback, PiHoleMod
@@ -40,10 +40,25 @@ class Terrashire():
         init_path = os.path.join(os.path.dirname(__file__), 'init')
         print(f"Copying files from {init_path}")
         copy(init_path, absolute_path)
-        run("git init .")
+
+        print(f"Initializing new git repo at {absolute_path}")
+        run(f"rm __init__.py", absolute_path)
+        # TODO this isn't working...
+        run(f"rm  -R -f __pycache__", absolute_path)
+        run(f"rm  -R -f __pycache__", absolute_path)
+
+        run(f"mv Config.json .Config.json", absolute_path)
+
+        run("git init .", absolute_path)
+        run("ls -l -a", absolute_path)
+        print("Done initializing")
+    
 
     def list_network(self, target_ip_range="192.168.1.1/24"):
         pprint.pprint(scan_network(target_ip_range))
+
+    def detect_new_devices(self, target_ip_range="192.168.1.1/24"):
+         pprint.pprint(detect_new_devices(target_ip_range))
 
     def run(self):
         print("TODO running some stuff")

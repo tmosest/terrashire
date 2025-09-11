@@ -2,7 +2,7 @@ import os
 import unittest
 from typer.testing import CliRunner
 
-
+from .cmd_util import run
 from .cli import app  # Import your Typer app
 
 runner = CliRunner()
@@ -14,11 +14,23 @@ def test_help():
 
 def test_init():
     path =  os.path.join(os.path.expanduser("~"), 'terrashire-cli-test-units')
+    
+    run(f"rm -Rf {path} || true")
+    
     result = runner.invoke(app, ["init", path])
     assert result.exit_code == 0
+
+    print(result.stdout)
     assert "Initializing homelab iac" in result.stdout
     assert "Copying files from" in result.stdout
-    assert "Reinitialized existing Git repository in" in result.stdout
+
+    files = [".Config.json", ".git", ".gitignore"]
+    for f in files:
+        assert f in result.stdout
+
+    assert f"Initialized empty Git repository in {path}" in result.stdout
+    
+    assert "Done initializing" in result.stdout
 
 '''
 def test_list_network():

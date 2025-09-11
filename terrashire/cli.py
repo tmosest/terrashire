@@ -9,6 +9,7 @@ app.command()(terrashire_instance.run)
 app.command("help")(terrashire_instance.help)
 app.command("init")(terrashire_instance.init)
 app.command("list_network")(terrashire_instance.list_network)
+app.command("detect_new_devices")(terrashire_instance.detect_new_devices)
 # Modules TODO dynamic
 app.command("gitea")(terrashire_instance.gitea)
 app.command("opnsense")(terrashire_instance.opnsense)

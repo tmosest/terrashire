@@ -1,30 +1,55 @@
 from scapy.all import ARP, Ether, srp
 import socket
+import time
 
-def scan_network(target_ip_range="192.168.1.1/24"):
-    """
-    Scans the local network for connected devices.
+from .config import Config
 
-    Args:
-        target_ip_range (str): The IP address range to scan (e.g., "192.168.1.1/24").
+def scan_network(ip_range):
+    """Scans the network for active devices using ARP requests."""
+    arp_request = ARP(pdst=ip_range)
+    broadcast = Ether(dst="ff:ff:ff:ff:ff:ff")
+    arp_request_broadcast = broadcast / arp_request
+    answered_list = srp(arp_request_broadcast, timeout=1, verbose=False)[0]
 
-    Returns:
-        list: A list of dictionaries, each containing 'ip' and 'mac' of discovered devices.
-    """
-    arp_request = ARP(pdst=target_ip_range)
-    ether_frame = Ether(dst="ff:ff:ff:ff:ff:ff")
-    packet = ether_frame / arp_request
-
-    result = srp(packet, timeout=3, verbose=0)[0]
+    # Try to read the config file in this repo
+    config = Config.loadConfig()
 
     devices = []
-    for sent, received in result:
-        ip_address = received.psrc
-        try:
-            # Perform a reverse DNS lookup for the hostname
-            hostname = socket.gethostbyaddr(ip_address)[0]
-        except (socket.herror, socket.gaierror):
-            # Handle cases where a hostname cannot be resolved
-            hostname = ""
-        devices.append({'ip': ip_address, 'mac': received.hwsrc, "hostname": hostname})
+    for element in answered_list:
+        mac = element[1].hwsrc
+        ip = element[1].psrc
+        info = {"ip": ip, "mac": mac}
+        if config is not None and mac in config.servers_map:
+            print(f"Found known server %s", mac)
+            info = config.servers_map[mac]
+            if ip != info.ip:
+                print(f"Notice ip has changed from %s to %s for %s", info.ip, ip, mac)
+            info = info.to_json_str()
+        devices.append(info)
     return devices
+
+def detect_new_devices(ip_range):
+    """Detects new devices joining the network."""
+    print("Performing initial scan...")
+    # Try to read the config file in this repo
+    config = Config.loadConfig()
+
+    known_devices = {device.mac: device.ip for device in config.servers}
+    
+    current_devices = scan_network(ip_range)
+    known_devices = {device["mac"]: device["ip"] for device in current_devices}
+    print(f"Known devices: {len(known_devices)}")
+
+    while True:
+        time.sleep(10)  # Scan every 10 seconds
+        print("Rescanning network...")
+        new_scan_devices = scan_network(ip_range)
+        
+        for device in new_scan_devices:
+            if device["mac"] not in known_devices:
+                print(f"NEW DEVICE DETECTED: IP: {device['ip']}, MAC: {device['mac']}")
+                known_devices[device["mac"]] = device["ip"] # Add to known devices
+
+        # Optional: Remove devices that have left the network
+        # This requires more complex logic to avoid false positives from temporary disconnections
+        # For simplicity, this example focuses on new device detection.
