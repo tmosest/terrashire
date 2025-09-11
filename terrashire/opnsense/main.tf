@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "opnsense" {
-  uri = var.opnsense_url
+  uri = var.opnsense_ip
   user = var.opnsense_user
   password = var.opnsense_password
 }

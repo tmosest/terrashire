@@ -25,7 +25,7 @@ class Host:
     @staticmethod
     def from_json_str(data):
         host = Host()
-        
+        print(data)
         # data = json.loads(s)
 
         host.mac = data["mac"]
@@ -47,7 +47,14 @@ class Host:
         return self.to_json_str()
 
     
-    def to_json(self):
+    def toJSON(self):
+        '''
+        return json.dumps(
+            self,
+            default=lambda o: o.__dict__, 
+            sort_keys=True,
+            indent=4)
+        '''
         return {
            "mac": self.mac,
            "ip": self.ip,
@@ -63,4 +70,4 @@ class Host:
         return self.to_json_str()
 
     def to_json_str(self):
-        return json.dumps(self.to_json(), indent=4)
+        return json.dumps(self.toJSON(), indent=4)

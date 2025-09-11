@@ -13,3 +13,5 @@ class OpnSenseMod(Mod):
 
     def init(self):
         self.init_mod()
+
+

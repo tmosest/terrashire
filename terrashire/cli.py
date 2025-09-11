@@ -2,6 +2,14 @@
 import typer
 from .terrashire import Terrashire
 
+from json import JSONEncoder
+
+def _default(self, obj):
+    return getattr(obj.__class__, "toJSON", _default.default)(obj)
+
+_default.default = JSONEncoder().default
+JSONEncoder.default = _default
+
 app = typer.Typer()
 terrashire_instance = Terrashire()
 
